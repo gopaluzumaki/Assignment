@@ -1,17 +1,14 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-// type NavBarItemPropsType = {
-//   nav: NavItemType;
-//   onPress?: (navItem: NavItemType) => void;
-// };
-
-const MenuItem = ({ nav, onPress }) => {
-  const handleOnPress = () => onPress?.(nav);
+const MenuItem = ({ item, onPress }) => {
+  const handleOnPress = () => {
+    if (onPress) onPress(item);
+  };
 
   return (
     <Pressable style={styles.container} onPress={handleOnPress}>
-      <Text>{nav.name}</Text>
+      <Text>{item.name}</Text>
     </Pressable>
   );
 };

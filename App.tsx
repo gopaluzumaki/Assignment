@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, Button, StyleSheet } from 'react-native';
 import AddTwoNumbersScreen from './src/Screens/AddingTwoNumber';
@@ -45,7 +46,9 @@ const App = () => {
       {screen === 'Calculator' ? (
         <AddTwoNumbersScreen onClose={onClose} />
       ) : screen === 'NavBar' ? (
-        <MobileNavBar onClose={onClose} />
+        <NavigationContainer>
+          <MobileNavBar onClose={onClose} />
+        </NavigationContainer>
       ) : (
         screen === 'GetTargetIndex' && <GetTargetIndex onClose={onClose} />
       )}
