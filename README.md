@@ -60,11 +60,12 @@ yarn ios
 
 If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
+
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
 
 After Running the App
 
-YOu will see three buttons referring to three challenges, clicking on a particular button opens that particular challenge assessment
+You will see three buttons referring to three challenges, clicking on a particular button opens that particular challenge assessment
 
 You will be having close Icon in every challenge on which you can click and go to landing page where buttons are shown again in order to move to a different challenge
