@@ -59,13 +59,11 @@ const MobileNavBar = ({ onClose }) => {
   );
 };
 
-const DrawerContent = (drawerProps: DrawerContentComponentProps) => {
-  const currentRoute = drawerProps.state.routes[drawerProps.state.index];
-
-  const handleOnPressClose = () => drawerProps.navigation.closeDrawer();
+const DrawerContent = (props: DrawerContentComponentProps) => {
+  const selectedItem = props.state.routes[props.state.index];
 
   const handleOnPressMenuItem = menu => {
-    drawerProps.navigation.navigate(menu.name);
+    props.navigation.navigate(menu.name);
   };
 
   const rendermenuItems = menuItem => {
@@ -80,16 +78,16 @@ const DrawerContent = (drawerProps: DrawerContentComponentProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text>{currentRoute.name}</Text>
+        <Text>{selectedItem.name}</Text>
 
         <View style={styles.icons}>
           <MaterialIcons name="search" size={24} color="#000" />
-          <Pressable onPress={handleOnPressClose}>
+          <TouchableOpacity onPress={() => props.navigation.closeDrawer()}>
             <MaterialIcons name="close" size={24} color="#000" />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
-      {drawerProps.state.routes.map(rendermenuItems)}
+      {props.state.routes.map(rendermenuItems)}
     </SafeAreaView>
   );
 };
