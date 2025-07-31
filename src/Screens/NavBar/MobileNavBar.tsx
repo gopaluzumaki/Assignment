@@ -3,37 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { DrawerContent } from '../../Components/DrawerContent';
-
-const MenuItems = [
-  {
-    name: 'AEON',
-    route: '/',
-  },
-  {
-    name: 'Showcase',
-    route: '/',
-  },
-  {
-    name: 'Docs',
-    route: '/',
-  },
-  {
-    name: 'Blog',
-    route: '/',
-  },
-  {
-    name: 'Analytics',
-    route: '/',
-  },
-  {
-    name: 'Templates',
-    route: '/',
-  },
-  {
-    name: 'Enterprise',
-    route: '/',
-  },
-];
+import { MenuItems } from '../../Constants/MenuItems';
 
 const Drawer = createDrawerNavigator();
 
