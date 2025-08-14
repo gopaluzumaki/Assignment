@@ -5840,11 +5840,6 @@ react-native-screens@^4.11.0:
     react-native-is-edge-to-edge "^1.2.1"
     warn-once "^0.1.0"
 
-react-native-ssl-public-key-pinning@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/react-native-ssl-public-key-pinning/-/react-native-ssl-public-key-pinning-1.2.6.tgz#16533b75aa1b2f1ac603068939d1e5d98baeff75"
-  integrity sha512-WrWCRgXSet/lw8VVgrnTM5RXI+YWmSxE4+PmWcxFOUq7Kea+arkYASvDD1Dajw6yFGEw4GYuvIRdp6s7KxO60Q==
-
 react-native-vector-icons@^10.3.0:
   version "10.3.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-10.3.0.tgz#de440f2627a2ed1079ce3b99d5b9d4f86894df28"
