@@ -64,7 +64,6 @@ export const LoginScreen: React.FC = ({ navigation }) => {
   };
 
   const signUp = async () => {
-    // setIsSignup(true);
     if (!username || !email || !password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;

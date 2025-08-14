@@ -21,7 +21,6 @@ export const SplashScreen: React.FC = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Splash screen</Text>
-      {/* <ActivityIndicator size="large" color="#000" /> */}
     </View>
   );
 };

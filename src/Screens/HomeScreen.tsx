@@ -17,6 +17,7 @@ import { searchEvents } from '../api/ticketmaster';
 import { FavoritesContext } from '../store/FavoritesContext';
 import Icons from '../../android/app/assets';
 import i18n from '../il8n';
+import { Colors } from '../constants/colors';
 
 export const HomeScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -63,8 +64,8 @@ export const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.switchContainer}>
         <Switch
-          trackColor={{ false: '#767577', true: 'light-green' }}
-          thumbColor={isEnabled ? 'f4f3f4' : '#f4f3f4'}
+          trackColor={{ false: Colors.grey, true: Colors.lightGreen }}
+          thumbColor={Colors.white}
           onValueChange={toggleSwitch}
           value={isEnabled}
         />
@@ -74,7 +75,7 @@ export const HomeScreen = ({ navigation }) => {
         >
           <Image
             source={Icons.Profile}
-            style={{ height: 30, width: 30 }}
+            style={styles.imageStyles}
             resizeMode={'contain'}
           />
         </TouchableOpacity>
@@ -86,7 +87,7 @@ export const HomeScreen = ({ navigation }) => {
           onChangeText={setKeyword}
           style={styles.keyworkTextInputStyle}
         />
-        <View style={{ marginVertical: 14 }} />
+        <View style={styles.container1} />
         <TextInput
           placeholder="City"
           value={city}
@@ -106,22 +107,13 @@ export const HomeScreen = ({ navigation }) => {
           <Text>{t('search')}</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ marginTop: 100 }}>
+      <View style={styles.container2}>
         {isLoading ? (
-          <ActivityIndicator size="large" color="#00000" />
+          <ActivityIndicator size="large" color={Colors.black} />
         ) : (
           events.length > 0 && (
             <>
-              <Text
-                style={{
-                  textAlign: 'left',
-                  color: 'blue',
-                  fontWeight: 'bold',
-                  marginBottom: 24,
-                }}
-              >
-                {'List of events'}
-              </Text>
+              <Text style={styles.eventTextStyles}>{'List of events'}</Text>
               <FlatList
                 data={events}
                 keyExtractor={item => item.id}
@@ -154,6 +146,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  itemView: { borderWidth: 0.5, padding: 12, marginVertical: 8 },
-  switchContainer: { flexDirection: 'row', justifyContent: 'space-between' },
+  itemView: {
+    borderWidth: 0.5,
+    padding: 12,
+    marginVertical: 8,
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  imageStyles: {
+    height: 30,
+    width: 30,
+  },
+  container1: {
+    marginVertical: 14,
+  },
+  container2: {
+    marginTop: 100,
+  },
+  eventTextStyles: {
+    textAlign: 'left',
+    color: Colors.blue,
+    fontWeight: 'bold',
+    marginBottom: 24,
+  },
 });

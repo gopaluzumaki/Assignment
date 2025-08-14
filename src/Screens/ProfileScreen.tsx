@@ -5,9 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../store/AuthContext';
 import { FavoritesContext } from '../store/FavoritesContext';
 import { CommonActions } from '@react-navigation/native';
+import { Colors } from '../constants/colors';
 
 export const ProfileScreen: React.FC = ({ navigation }) => {
-  const { signOut, userToken } = useContext(AuthContext);
+  const { signOut } = useContext(AuthContext);
   const { favorites } = useContext(FavoritesContext);
   const { t } = useTranslation();
 
@@ -42,5 +43,5 @@ export const ProfileScreen: React.FC = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   title: { fontSize: 24, fontWeight: 'bold' },
-  subtitle: { fontSize: 18, marginTop: 20, color: 'blue' },
+  subtitle: { fontSize: 18, marginTop: 20, color: Colors.blue },
 });
