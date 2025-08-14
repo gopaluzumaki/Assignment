@@ -14,13 +14,13 @@ export const SplashScreen: React.FC = ({ navigation }) => {
     };
     setTimeout(() => {
       navigation.navigate('Login');
-    }, 2500);
+    }, 4000);
     initialize();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>City Pulse</Text>
+      <Text style={styles.title}>Splash screen</Text>
       {/* <ActivityIndicator size="large" color="#000" /> */}
     </View>
   );

@@ -44,7 +44,10 @@ export const LoginScreen: React.FC = ({ navigation }) => {
     if (!result || updatedResult.token !== token) {
       setUsername('');
       setPassword('');
-      Alert.alert('No Match', 'Please create an account');
+      Alert.alert(
+        'No Match',
+        'Please check your username and password, if you are a new user, please create an account',
+      );
       return;
     }
     if (username && password) {
@@ -132,7 +135,7 @@ export const LoginScreen: React.FC = ({ navigation }) => {
       )}
       {!isSignup ? (
         <>
-          <Button title="Login" onPress={onLogin} />{' '}
+          <Button title="Login" onPress={onLogin} />
           <Button title="createAccount" onPress={createAccount} />
         </>
       ) : (

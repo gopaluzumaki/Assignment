@@ -67,8 +67,8 @@ export const HomeScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Switch
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+          trackColor={{ false: '#767577', true: 'light-green' }}
+          thumbColor={isEnabled ? 'f4f3f4' : '#f4f3f4'}
           onValueChange={toggleSwitch}
           value={isEnabled}
         />

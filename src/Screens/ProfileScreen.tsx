@@ -19,7 +19,9 @@ export const ProfileScreen: React.FC = ({ navigation }) => {
         data={favorites}
         keyExtractor={item => item}
         renderItem={({ item }) => <Text>- {item}</Text>}
-        ListEmptyComponent={<Text>{t('noFavorites')}</Text>}
+        ListEmptyComponent={
+          <Text style={{ marginTop: 8 }}>{t('noFavorites')}</Text>
+        }
       />
       <Button
         title={t('logout')}
@@ -40,5 +42,5 @@ export const ProfileScreen: React.FC = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   title: { fontSize: 24, fontWeight: 'bold' },
-  subtitle: { fontSize: 18, marginTop: 20 },
+  subtitle: { fontSize: 18, marginTop: 20, color: 'blue' },
 });
