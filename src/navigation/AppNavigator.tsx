@@ -26,7 +26,11 @@ const AppNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen name="Splash" component={SplashScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerBackVisible: false, headerLeft: () => {} }}
+      />
 
       <Stack.Screen
         name="Home"

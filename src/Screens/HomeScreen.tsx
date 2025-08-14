@@ -9,11 +9,14 @@ import {
   StyleSheet,
   ActivityIndicator,
   Image,
+  Switch,
+  I18nManager,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { searchEvents } from '../api/ticketmaster';
 import { FavoritesContext } from '../store/FavoritesContext';
 import Icons from '../../android/app/assets';
+import i18n from '../il8n';
 
 export const HomeScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -22,6 +25,7 @@ export const HomeScreen = ({ navigation }) => {
   const [events, setEvents] = useState<any[]>([]);
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
 
   const onSearch = async () => {
     setIsLoading(true);
@@ -52,21 +56,33 @@ export const HomeScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
-  if (isLoading) {
-  }
+  const toggleSwitch = async () => {
+    const newLanguage = isEnabled ? 'en' : 'ar';
+    await i18n.changeLanguage(newLanguage);
+    I18nManager.forceRTL(newLanguage === 'ar');
+    setIsEnabled(!isEnabled);
+  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={{ alignSelf: 'flex-end' }}
-        onPress={() => navigation.navigate('Profile')}
-      >
-        <Image
-          source={Icons.Profile}
-          style={{ height: 30, width: 30 }}
-          resizeMode={'contain'}
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Switch
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+          onValueChange={toggleSwitch}
+          value={isEnabled}
         />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignSelf: 'flex-end' }}
+          onPress={() => navigation.navigate('Profile')}
+        >
+          <Image
+            source={Icons.Profile}
+            style={{ height: 30, width: 30 }}
+            resizeMode={'contain'}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.subContainer}>
         <TextInput
           placeholder={t('search')}
