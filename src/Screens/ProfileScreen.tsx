@@ -1,17 +1,12 @@
 // src/screens/ProfileScreen.tsx
 import React, { useContext } from 'react';
-import {
-  View,
-  Text,
-  Button,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../store/AuthContext';
 import { FavoritesContext } from '../store/FavoritesContext';
+import { CommonActions } from '@react-navigation/native';
 
-export const ProfileScreen: React.FC = () => {
+export const ProfileScreen: React.FC = ({ navigation }) => {
   const { signOut, userToken } = useContext(AuthContext);
   const { favorites } = useContext(FavoritesContext);
   const { t } = useTranslation();
@@ -26,7 +21,18 @@ export const ProfileScreen: React.FC = () => {
         renderItem={({ item }) => <Text>- {item}</Text>}
         ListEmptyComponent={<Text>{t('noFavorites')}</Text>}
       />
-      <Button title={t('logout')} onPress={signOut} />
+      <Button
+        title={t('logout')}
+        onPress={() => {
+          signOut();
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'Login' }],
+            }),
+          );
+        }}
+      />
     </View>
   );
 };

@@ -130,17 +130,21 @@ export const LoginScreen: React.FC = ({ navigation }) => {
           />
         </>
       )}
-      {!isSignup && (
+      {!isSignup ? (
         <>
           <Button title="Login" onPress={onLogin} />{' '}
           <Button title="createAccount" onPress={createAccount} />
         </>
+      ) : (
+        <></>
       )}
 
-      {isSignup && <Button title="SignUp" onPress={signUp} />}
+      {isSignup ? <Button title="SignUp" onPress={signUp} /> : <></>}
 
-      {biometricSupported && (
+      {biometricSupported ? (
         <Text style={styles.note}>Biometric login enabled</Text>
+      ) : (
+        <></>
       )}
     </View>
   );
