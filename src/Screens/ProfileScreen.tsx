@@ -1,0 +1,38 @@
+// src/screens/ProfileScreen.tsx
+import React, { useContext } from 'react';
+import {
+  View,
+  Text,
+  Button,
+  FlatList,
+  StyleSheet,
+} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { AuthContext } from '../store/AuthContext';
+import { FavoritesContext } from '../store/FavoritesContext';
+
+export const ProfileScreen: React.FC = () => {
+  const { signOut, userToken } = useContext(AuthContext);
+  const { favorites } = useContext(FavoritesContext);
+  const { t } = useTranslation();
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{t('profile')}</Text>
+      <Text style={styles.subtitle}>{t('favorites')}</Text>
+      <FlatList
+        data={favorites}
+        keyExtractor={item => item}
+        renderItem={({ item }) => <Text>- {item}</Text>}
+        ListEmptyComponent={<Text>{t('noFavorites')}</Text>}
+      />
+      <Button title={t('logout')} onPress={signOut} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 20 },
+  title: { fontSize: 24, fontWeight: 'bold' },
+  subtitle: { fontSize: 18, marginTop: 20 },
+});

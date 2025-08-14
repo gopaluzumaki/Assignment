@@ -1,80 +1,35 @@
+// App.tsx
+import React, { useEffect } from 'react';
+import { I18nManager } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, Button, StyleSheet } from 'react-native';
-import AddTwoNumbersScreen from './src/Screens/AddingTwoNumber';
-import { GetTargetIndex } from './src/Screens/GetTargetIndex';
-import MobileNavBar from './src/Screens/NavBar/MobileNavBar';
+import { FavoritesProvider } from './src/store/FavoritesContext';
+import i18n, { toggleLanguage } from './src/i18n';
+import { initSslPinning } from './src/services/sslPinning';
+import { AuthProvider } from './src/store/AuthContext';
+import AppNavigator from './src/navigation/AppNavigator';
 
-const App = () => {
-  const [screen, setScreen] = useState('');
-  useEffect(() => {}, []);
-
-  const handlePress = text => {
-    setScreen(text);
-  };
-
-  const onClose = () => {
-    setScreen('');
-  };
+const App: React.FC = () => {
+  useEffect(() => {
+    initSslPinning();
+  }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
-      {screen.length === 0 && (
-        <>
-          <View style={styles.buttonGroup}>
-            <Button
-              title="Challenge 1 ==> Show Calculator"
-              onPress={() => handlePress('Calculator')}
-            />
-          </View>
-
-          <View style={styles.buttonGroup}>
-            <Button
-              title="Challenge 2 ==> Show NavBar"
-              onPress={() => handlePress('NavBar')}
-            />
-          </View>
-
-          <View style={styles.buttonGroup}>
-            <Button
-              title="Challenge 3 ==> Show GettingTargetIndex"
-              onPress={() => handlePress('GetTargetIndex')}
-            />
-          </View>
-        </>
-      )}
-      {screen === 'Calculator' ? (
-        <AddTwoNumbersScreen onClose={onClose} />
-      ) : screen === 'NavBar' ? (
+    <AuthProvider>
+      <FavoritesProvider>
         <NavigationContainer>
-          <MobileNavBar onClose={onClose} />
+          <AppNavigator />
+          {/* Optional: Add a button somewhere to toggle languages */}
+          {/* Example usage:
+            <Button title="Toggle Lang" onPress={() => {
+              toggleLanguage().then(() => {
+                // Optionally reload to apply RTL layout
+              });
+            }} />
+          */}
         </NavigationContainer>
-      ) : (
-        screen === 'GetTargetIndex' && <GetTargetIndex onClose={onClose} />
-      )}
-    </SafeAreaView>
+      </FavoritesProvider>
+    </AuthProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  buttonGroup: {
-    marginVertical: 10,
-    alignItems: 'center',
-    borderWidth: 0.5,
-    marginHorizontal: 20,
-    borderRadius: 12,
-  },
-  label: {
-    marginBottom: 6,
-    fontSize: 16,
-    fontWeight: '500',
-  },
-});
 
 export default App;
