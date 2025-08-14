@@ -1,4 +1,3 @@
-// src/auth/biometric.ts
 import ReactNativeBiometrics from 'react-native-biometrics';
 import * as Keychain from 'react-native-keychain';
 

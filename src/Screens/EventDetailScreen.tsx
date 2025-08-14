@@ -1,13 +1,5 @@
-// src/screens/EventDetailScreen.tsx
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  Button,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import { Text, Image, Button, ScrollView, StyleSheet } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { getEventById } from '../api/ticketmaster';
 import { FavoritesContext } from '../store/FavoritesContext';

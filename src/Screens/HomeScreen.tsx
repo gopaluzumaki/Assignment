@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   TextInput,
@@ -37,14 +37,10 @@ export const HomeScreen = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
+      style={styles.item}
       onPress={() => navigation.navigate('EventDetail', { id: item.id })}
     >
-      <View style={{ borderWidth: 0.5, padding: 12, marginVertical: 8 }}>
+      <View style={styles.itemView}>
         <Text>{item.name}</Text>
       </View>
       <View>
@@ -65,7 +61,7 @@ export const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+      <View style={styles.switchContainer}>
         <Switch
           trackColor={{ false: '#767577', true: 'light-green' }}
           thumbColor={isEnabled ? 'f4f3f4' : '#f4f3f4'}
@@ -112,7 +108,7 @@ export const HomeScreen = ({ navigation }) => {
       </View>
       <View style={{ marginTop: 100 }}>
         {isLoading ? (
-          <ActivityIndicator size="large" color="#000" />
+          <ActivityIndicator size="large" color="#00000" />
         ) : (
           events.length > 0 && (
             <>
@@ -153,4 +149,11 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 10,
   },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  itemView: { borderWidth: 0.5, padding: 12, marginVertical: 8 },
+  switchContainer: { flexDirection: 'row', justifyContent: 'space-between' },
 });

@@ -1,6 +1,4 @@
-// src/navigation/AppNavigator.tsx
 import React, { useContext } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { LoginScreen } from '../screens/LoginScreen';
@@ -10,15 +8,7 @@ import { EventDetailScreen } from '../screens/EventDetailScreen';
 import { SplashScreen } from '../screens/SplashScreen';
 import { AuthContext } from '../store/AuthContext';
 
-type RootStackParamList = {
-  Splash: undefined;
-  Login: undefined;
-  Home: undefined;
-  EventDetail: { id: string };
-  Profile: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   const { state } = useContext(AuthContext);
