@@ -1,4 +1,3 @@
-// src/store/FavoritesContext.tsx
 import React, {
   createContext,
   useState,

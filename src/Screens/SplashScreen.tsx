@@ -1,7 +1,5 @@
-// src/screens/SplashScreen.tsx
 import React, { useEffect, useContext } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { initSslPinning } from '../services/sslPinning';
+import { View, Text, StyleSheet } from 'react-native';
 import { AuthContext } from '../store/AuthContext';
 
 export const SplashScreen: React.FC = ({ navigation }) => {
@@ -9,12 +7,11 @@ export const SplashScreen: React.FC = ({ navigation }) => {
 
   useEffect(() => {
     const initialize = async () => {
-      await initSslPinning();
       await restoreToken();
     };
     setTimeout(() => {
       navigation.navigate('Login');
-    }, 4000);
+    }, 3000);
     initialize();
   }, []);
 
