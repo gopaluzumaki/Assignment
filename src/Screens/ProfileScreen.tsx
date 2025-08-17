@@ -7,7 +7,7 @@ import { FavoritesContext } from '../store/FavoritesContext';
 import { CommonActions } from '@react-navigation/native';
 import { Colors } from '../constants/colors';
 
-export const ProfileScreen: React.FC = ({ navigation }) => {
+export const ProfileScreen: React.FC = ({ navigation }: any) => {
   const { signOut } = useContext(AuthContext);
   const { favorites } = useContext(FavoritesContext);
   const { t } = useTranslation();

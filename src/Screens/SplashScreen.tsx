@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { AuthContext } from '../store/AuthContext';
 
-export const SplashScreen: React.FC = ({ navigation }) => {
+export const SplashScreen: React.FC = ({ navigation }: any) => {
   const { restoreToken } = useContext(AuthContext);
 
   useEffect(() => {

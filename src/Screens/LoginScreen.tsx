@@ -1,4 +1,3 @@
-// src/screens/LoginScreen.tsx
 import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import {
@@ -30,7 +29,12 @@ export const LoginScreen: React.FC = ({ navigation }) => {
       setBiometricSupported(available);
       if (available) {
         const token = await retrieveCredentials();
-        if (token) promptBiometric().then(success => success && signIn(token));
+        console.log('token', token);
+        if (token)
+          promptBiometric().then(success => {
+            Alert.alert('Login Success');
+            return success && signIn(token) && navigation.navigate('Home');
+          });
       }
     })();
   }, []);
@@ -47,10 +51,10 @@ export const LoginScreen: React.FC = ({ navigation }) => {
         password,
       );
       Alert.alert('Success', 'Login Success');
-      const idToken = await userCredential.user.getIdToken();
-      console.log('dasd', idToken);
-      await storeCredentials(email, idToken);
-      signIn(idToken);
+      const token = await userCredential.user.getIdToken();
+      console.log('dasd', token);
+      await storeCredentials(email, token);
+      signIn(token);
       navigation.navigate('Home');
     } catch (error) {
       Alert.alert('ERROR', 'Invalid credentials');

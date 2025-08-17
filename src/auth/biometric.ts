@@ -14,13 +14,13 @@ export async function promptBiometric() {
   return result.success;
 }
 
-export async function storeCredentials(username: string, token: string) {
-  await Keychain.setGenericPassword(username, token, {
+export async function storeCredentials(email: string, token: string) {
+  await Keychain.setGenericPassword(email, token, {
     accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET,
   });
 }
 
 export async function retrieveCredentials() {
   const creds = await Keychain.getGenericPassword();
-  return creds ? creds : null;
+  return creds.password ? creds.password : null;
 }
