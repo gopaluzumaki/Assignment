@@ -1,6 +1,6 @@
 // src/screens/ProfileScreen.tsx
 import React, { useContext } from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../store/AuthContext';
 import { FavoritesContext } from '../store/FavoritesContext';
@@ -27,6 +27,7 @@ export const ProfileScreen: React.FC = ({ navigation }) => {
       <Button
         title={t('logout')}
         onPress={() => {
+          Alert.alert('LoggedOut successfully');
           signOut();
           navigation.dispatch(
             CommonActions.reset({
